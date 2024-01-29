@@ -1,0 +1,27 @@
+<div class="header-actions-container">
+
+  <ul class="header-actions">
+    <li class="dropdown">
+      <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+        {{#unless user.firstName}}
+        <span class="user-name d-none d-md-block">{{user_id}}</span>
+
+        {{/unless}}
+
+        <span class="user-name d-none d-md-block">{{user.firstName}}</span>
+
+        <span class="avatar">
+          <img src="{{user.urlImage}}" alt="Admin Templates" />
+          <span class="status busy"></span>
+        </span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userSettings">
+        <div class="header-profile-actions">
+          <a href="/dashboard/users/profile">Profile</a>
+          <a href="/dashboard/users/account-settings">Settings</a>
+          <a href="/dashboard/users/login">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,374 @@
+{{#section "styles"}}
+
+<!-- *************
+			************ Common Css Files *************
+		************ -->
+
+<!-- Animated css -->
+<link rel="stylesheet" href="/css/animate.css" />
+
+<!-- Bootstrap font icons css -->
+<link rel="stylesheet" href="/fonts/bootstrap/bootstrap-icons.css" />
+
+<!-- Main css -->
+<link rel="stylesheet" href="/css/main.min.css" />
+
+<!-- *************
+			************ Vendor Css Files *************
+		************ -->
+
+<!-- Scrollbar CSS -->
+<link rel="stylesheet" href="/vendor/overlay-scroll/overlayScrollbars.min.css" />
+
+<!-- Date Range CSS -->
+<link rel="stylesheet" href="/vendor/daterange/daterange.css" />
+
+<!-- Uploader CSS -->
+<link rel="stylesheet" href="/vendor/dropzone/dropzone.min.css" />
+{{/section}}
+
+<body>
+  <!-- Loading wrapper start -->
+  <!-- <div id="loading-wrapper">
+			<div class="spinner">
+                <div class="line1"></div>
+				<div class="line2"></div>
+				<div class="line3"></div>
+				<div class="line4"></div>
+				<div class="line5"></div>
+				<div class="line6"></div>
+            </div>
+		</div> -->
+  <!-- Loading wrapper end -->
+  <!-- Page wrapper start -->
+  <!-- Sidebar wrapper start -->
+  {{>sidebar_menu}}
+  <!-- Sidebar wrapper end -->
+  <!-- *************
+				************ Main container start *************
+			************* -->
+  <div class="main-container">
+    <!-- Page header starts -->
+    <div class="page-header">
+      <div class="toggle-sidebar" id="toggle-sidebar">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <!-- Breadcrumb start -->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <i class="bi bi-house"></i>
+        </li>
+        <li class="breadcrumb-item breadcrumb-active" aria-current="page">
+          Account Settings
+        </li>
+      </ol>
+      <!-- Breadcrumb end -->
+
+      <!-- Header actions ccontainer start -->
+      <!-- Search container start -->
+      {{>header}}
+      <!-- Header actions end -->
+      <!-- Header actions ccontainer end -->
+    </div>
+    <!-- Page header ends -->
+
+    <!-- Content wrapper scroll start -->
+    <div class="content-wrapper-scroll">
+      {{#if error.body}}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-x-circle alert-icon"></i>
+        {{error.body}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {{/if}} {{#if result}}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-x-circle alert-icon"></i>
+        {{result.message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {{/if}}
+      <!-- Content wrapper start -->
+      <div class="content-wrapper">
+        <!-- Row start -->
+        <div class="row gx-3">
+          <div class="col-xl-12">
+            <!-- Card start -->
+            <div class="card">
+              <div class="card-body">
+                <!-- Row start -->
+                <div class="row gx-3">
+                  <div class="col-xxl-8 col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
+                    <div class="row gx-3">
+                      <div class="col-sm-6 col-12">
+                        <div class="d-flex flex-row">
+                          <img name="imageProfile" src="{{user.urlImage}}" class="img-fluid change-img-avatar"
+                            alt="Image" />
+                          <div id="dropzone-sm" class="mb-4 dropzone-dark">
+                            <form action="/dashboard/users/account-settings" method="post"
+                              class="dropzone needsclick dz-clickable" id="demo-upload">
+                              <div class="dz-message needsclick">
+                                <button type="button" class="dz-button">
+                                  Change Image.
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <form id="form1" action="/dashboard/users/account-settings" method="post">
+                      <!-- Form Field Start -->
+                      <div class="row gx-3">
+                        <!-- <div class="col-xxl-4 col-sm-6 col-12">
+                          <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input name="firstName" type="text" class="form-control" id="firstName" {{#if
+                              user.firstName}} placeholder="{{user.firstName}}" {{else}} placeholder="First Name"
+                              {{/if}} />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input name="lastName" type="text" class="form-control" id="lastName" {{#if user.lastName}}
+                              placeholder="{{user.lastName}}" {{else}} placeholder="Last Name" {{/if}} />
+                          </div>
+                        </div> -->
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <div class="mb-3">
+                            <label for="fullName" class="form-label">Last Name</label>
+                            <input disabled type="text" class="form-control" id="fullName" {{#if user.firstName}}
+                              placeholder="{{user.firstName}} {{user.lastName}}" {{else}} placeholder="Full Name"
+                              {{/if}} />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="emailID" class="form-label">Email ID</label>
+                            <input disabled type="email" class="form-control" id="email" placeholder="{{user.email}}" ?
+                              placeholder="reese@meail.com" : value="{{user.email}}" />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="phoneNo" class="form-label">Phone</label>
+                            <input name="phone" type="text" class="form-control" id="phone-format-br" {{#if user.phone}}
+                              placeholder="{{user.phone}}" {{else}} placeholder="(11) 9131-6102" {{/if}} />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" {{#if
+                              user.address}}placeholder="{{user.address}}" {{else}}placeholder="Address" {{/if}} />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city" {{#if
+                              user.city}}placeholder="{{user.city}}" {{else}}placeholder="City" {{/if}} />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control" id="state" name="state" {{#if
+                              user.state}}placeholder="{{user.state}}" {{else}}placeholder="State" {{/if}} />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="zipCode" class="form-label">Zip Code</label>
+                            <input type="text" class="form-control" id="zipCode" name="zipCode" {{#if
+                              user.zipCode}}placeholder="{{user.zipCode}}" {{else}}placeholder="ZipCode" {{/if}} />
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <select class="form-control" name="country" id="country">
+                              <option {{#comparar user.country "Brazil" }}{{/comparar}}> Brazil</option>
+                              <option {{#comparar user.country "Australia" }} {{/comparar}}> Australia </option>
+                              <option {{#comparar user.country "Canada" }} {{/comparar}}>Canada </option>
+                              <option {{#comparar user.country "Gremany" }}{{/comparar}}>Gremany </option>
+                              <option {{#comparar user.country "India" }} {{/comparar}}>India</option>
+                              <option {{#comparar user.country "Japan" }} {{/comparar}}>Japan </option>
+                              <option {{#comparar user.country "England" }} {{/comparar}}>England</option>
+                              <option {{#comparar user.country "United States" }} {{/comparar}}>United States</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-xxl-4 col-sm-6 col-12">
+                          <!-- Form Field Start -->
+                          <div class="mb-3">
+                            <label for="enterPassword" class="form-label">Password</label>
+                            <input name="password" type="password" class="form-control" id="password"
+                              placeholder="Enter Password" />
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- <form
+                      id="form2"
+                      action="/dashboard/users/account-settings"
+                      method="post"
+                    > -->
+                  <!-- <div class="col-xxl-4 col-lg-5 col-md-6 col-sm-12 col-12">
+                    <div class="account-settings-block">
+                      <div class="settings-block">
+                        <div class="settings-block-title">Change Plan</div>
+                        <div class="settings-block-body">
+                          <div class="pricing-change-plan">
+                            <a href="#" class="shade-blue active-plan">
+                              <h5>$29</h5>
+                              <h6>Basic</h6>
+                            </a>
+                            <a href="#" class="shade-green">
+                              <h5>$59</h5>
+                              <h6>Business</h6>
+                            </a>
+                            <a href="#" class="shade-red">
+                              <h5>$99</h5>
+                              <h6>Enterprise</h6>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="settings-block">
+                        <div class="settings-block-title">Other Settings</div>
+                        <div class="settings-block-body">
+                          <div class="list-group">
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                              <div>Show desktop notifications</div>
+                              <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="showNotifications" />
+                                <label class="form-check-label" for="showNotifications"></label>
+                              </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                              <div>Show email notifications</div>
+                              <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="showEmailNotifications" checked />
+                                <label class="form-check-label" for="showEmailNotifications"></label>
+                              </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                              <div>Show chat notifications</div>
+                              <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="showChatNotifications" />
+                                <label class="form-check-label" for="showChatNotifications"></label>
+                              </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                              <div>Show purchase history</div>
+                              <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="showPurchaseNotifications" />
+                                <label class="form-check-label" for="showPurchaseNotifications"></label>
+                              </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                              <div>Show orders</div>
+                              <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="showOrders" />
+                                <label class="form-check-label" for="showOrders"></label>
+                              </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                              <div>Show alerts</div>
+                              <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="showAlerts" />
+                                <label class="form-check-label" for="showAlerts"></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  <!-- </form> -->
+
+                  <div class="col-sm-12 col-12">
+                    <hr />
+                    <button onclick="submitForms()" class="btn btn-info">
+                      Save Settings
+                    </button>
+                  </div>
+                </div>
+                <!-- Row end -->
+              </div>
+            </div>
+            <!-- Card end -->
+          </div>
+        </div>
+        <!-- Row end -->
+      </div>
+      <!-- Content wrapper end -->
+
+      <!-- App Footer start -->
+      <div class="app-footer">
+        <span>© Bootstrap Gallery 2023</span>
+      </div>
+      <!-- App footer end -->
+    </div>
+    <!-- Content wrapper scroll end -->
+  </div>
+  <!-- *************
+				************ Main container end *************
+			************* -->
+  </div>
+  <!-- Page wrapper end -->
+  {{#section "script"}}
+
+  <script>
+    function submitForms() {
+      // Enviar o primeiro formulário
+      document.getElementById("demo-upload").submit();
+
+      // Enviar o segundo formulário
+      document.getElementById("form1").submit();
+    }
+  </script>
+
+  <!-- *************
+			************ Required JavaScript Files *************
+		************* -->
+  <!-- Required jQuery first, then Bootstrap Bundle JS -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/modernizr.js"></script>
+  <script src="/js/moment.js"></script>
+
+  <!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+  <!-- Overlay Scroll JS -->
+  <!-- <script src="/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+  <script src="/vendor/overlay-scroll/custom-scrollbar.js"></script> -->
+
+  <!-- Date Range JS -->
+  <script src="/vendor/daterange/daterange.js"></script>
+  <script src="/vendor/daterange/custom-daterange.js"></script>
+
+  <!-- Dropzone JS -->
+  <script src="/vendor/dropzone/dropzone.min.js"></script>
+
+  <!-- Input Mask JS -->
+  <script src="/vendor/input-masks/cleave.min.js"></script>
+  <script src="/vendor/input-masks/cleave-phone.js"></script>
+  <script src="/vendor/input-masks/cleave-custom.js"></script>
+
+  <!-- Main Js Required -->
+  <script src="/js/main.js"></script>
+  {{/section}}
+</body>

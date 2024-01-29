@@ -1,0 +1,130 @@
+{{#section "styles"}}
+
+<!-- *************
+			************ Common Css Files *************
+		************ -->
+
+<!-- Animated css -->
+<link rel="stylesheet" href="/css/animate.css" />
+
+<!-- Bootstrap font icons css -->
+<link rel="stylesheet" href="/fonts/bootstrap/bootstrap-icons.css" />
+
+<!-- Main css -->
+<link rel="stylesheet" href="/css/main.min.css" />
+
+{{/section}}
+
+<body class="login-container">
+  <!-- Loading wrapper start -->
+  <!-- <div id="loading-wrapper">
+			<div class="spinner">
+                <div class="line1"></div>
+				<div class="line2"></div>
+				<div class="line3"></div>
+				<div class="line4"></div>
+				<div class="line5"></div>
+				<div class="line6"></div>
+            </div>
+		</div> -->
+  <!-- Loading wrapper end -->
+
+  <!-- Login box start -->
+  <form action="/dashboard/users/signup" method="post">
+    <div class="login-box">
+      <div class="login-form">
+        <a href="" class="login-logo">
+          <img src="/images/logo.svg" alt="Vico Admin" />
+        </a>
+        <div class="login-welcome">
+          Welcome back, <br />Please create your Max admin account.
+        </div>
+        {{#if error.body}}
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <i class="bi bi-x-circle alert-icon"></i>
+          {{error.body}}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {{/if}}
+        <div class="mb-3">
+          <div class="was-validated">
+            <label for="validationCustom02" class="form-label">Email</label>
+            <input name="email" type="email" class="form-control" required />
+            <div class="invalid-feedback">Please provide a valid Email.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="was-validated">
+            <label for="validationCustom03" class="form-label"
+              >First Name</label
+            >
+            <input name="firstName" type="text" class="form-control" required />
+            <div class="invalid-feedback">
+              Please provide a valid Fist Name.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="was-validated">
+            <label class="form-label">Last Name</label>
+            <input name="lastName" type="text" class="form-control" required />
+            <div class="invalid-feedback">
+              Please provide a valid Last Name.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="was-validated">
+            <label class="form-label">Password</label>
+            <input
+              name="password"
+              type="password"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Please provide a valid Password.</div>
+          </div>
+        </div>
+        <div class="login-form-actions">
+          <button type="submit" class="btn">
+            <span class="icon"> <i class="bi bi-arrow-right-circle"></i> </span>
+            Signup
+          </button>
+        </div>
+        <div class="login-form-footer">
+          <div class="additional-link">
+            Already have an account? <a href="/dashboard/users/login"> Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- Login box end -->
+
+  {{#section "script"}}
+
+  <!-- *************
+			************ Required JavaScript Files *************
+		************* -->
+  <!-- Required jQuery first, then Bootstrap Bundle JS -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/modernizr.js"></script>
+  <script src="/js/moment.js"></script>
+
+  <!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+  <!-- Main Js Required -->
+  <script src="/js/main.js"></script>
+  {{/section}}
+</body>

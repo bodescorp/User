@@ -1,0 +1,114 @@
+{{#section "styles"}}
+<!-- *************
+			************ Common Css Files *************
+		************ -->
+
+<!-- Animated css -->
+<link rel="stylesheet" href="/css/animate.css" />
+
+<!-- Bootstrap font icons css -->
+<link rel="stylesheet" href="/fonts/bootstrap/bootstrap-icons.css" />
+
+<!-- Main css -->
+<link rel="stylesheet" href="/css/main.min.css" />
+
+{{/section}}
+
+<body class="login-container">
+  <!-- Loading wrapper start -->
+  <!-- <div id="loading-wrapper">
+			<div class="spinner">
+                <div class="line1"></div>
+				<div class="line2"></div>
+				<div class="line3"></div>
+				<div class="line4"></div>
+				<div class="line5"></div>
+				<div class="line6"></div>
+            </div>
+		</div> -->
+  <!-- Loading wrapper end -->
+
+  <!-- Login box start -->
+  <form action="/dashboard/users/verifyEmail/{{email_token}}" method="post">
+    <div class="login-box">
+      <div class="login-form">
+        <a href="" class="login-logo">
+          <img src="/images/logo.svg" alt="Vico Admin" />
+        </a>
+        <div class="login-welcome">
+          In order to access your Max account,<br />please enter the email id
+          you provided during the registration process.
+        </div>
+        {{#if error.body}}
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <i class="bi bi-x-circle alert-icon"></i>
+          {{error.body}}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {{/if}} {{#if message}}
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <i class="bi bi-x-circle alert-icon"></i>
+          {{message.body}}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {{/if}}
+        <div class="mb-3">
+          <label class="form-label">Codigo de Login</label>
+          <input
+            name="codLogin"
+            type="number"
+            class="form-control"
+            placeholder="Enter your codigo"
+          />
+        </div>
+        <div class="login-form-actions">
+          <button type="submit" class="btn">
+            <span class="icon"> <i class="bi bi-arrow-right-circle"></i> </span>
+            Submit
+          </button>
+        </div>
+        <div class="login-form-footer">
+          <div class="additional-link">
+            Don't receive the login code?
+            <a href="/dashboard/users/sendCodLogin/{{email_token}}"> Resend</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- Login box end -->
+
+  {{#section "script"}}
+  <!-- *************
+			************ Required JavaScript Files *************
+		************* -->
+  <!-- Required jQuery first, then Bootstrap Bundle JS -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/modernizr.js"></script>
+  <script src="/js/moment.js"></script>
+
+  <!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+  <!-- Main Js Required -->
+  <script src="/js/main.js"></script>
+  {{/section}}
+</body>

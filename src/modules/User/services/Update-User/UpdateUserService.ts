@@ -24,7 +24,7 @@ export default class UpdateUserService {
       passwordHash = await hash(password, 8);
     }
     const urlImage = file
-      ? `http://localhost:5000/files/${file.filename}`
+      ? `https://user-production-3da8.up.railway.app/files/${file.filename}`
       : undefined;
 
     const updateData: Record<string, unknown> = {};
